@@ -3,8 +3,18 @@ from app.view import planche_api
 from app.model import planche
 from app.database import engine
 from app.database import Base
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Ajouter le middleware CORS pour autoriser votre frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],  # Autoriser les requêtes venant de localhost:4200 (le frontend)
+    allow_credentials=True,
+    allow_methods=["*"],  # Autoriser toutes les méthodes (GET, POST, etc.)
+    allow_headers=["*"],  # Autoriser tous les headers
+)
 
 Base.metadata.create_all(bind=engine)
 
