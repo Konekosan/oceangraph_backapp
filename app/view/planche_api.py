@@ -11,10 +11,6 @@ loggers = logging.getLogger(__name__)
 
 planche_router = APIRouter()
 
-def _print(text: str, log_level='info'):
-    print(text)
-    getattr(loggers, log_level)(text)
-
 # Fetch all planches
 @planche_router.get("/")
 async def get(db:Session=Depends(get_db)):

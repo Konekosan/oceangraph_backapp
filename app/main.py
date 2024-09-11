@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.view import planche_api
-from app.model import planche
+from app.view import utilisateur_api
 from app.database import engine
 from app.database import Base
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,3 +23,4 @@ def index():
     return {'details': 'Hello world!'}
 
 app.include_router(planche_api.planche_router, prefix='/planche', tags=['planche'])
+app.include_router(utilisateur_api.utilisateur_router, prefix='/user', tags=['user'])
